@@ -5,6 +5,8 @@ class OysterCard
 
   def initialize(balance = BALANCE_DEFAULT)
     @balance = balance
+    @touch_in = false
+    @touch_out = false
   end
 
   def top_up(value)
@@ -17,5 +19,16 @@ class OysterCard
     @balance -= value
   end
 
+  def touch_in
+    @touch_in = true
+  end
+
+  def touch_out
+    @touch_out = true
+  end
+
+  def in_journey?
+    @touch_in  && !@touch_out 
+  end
 
 end

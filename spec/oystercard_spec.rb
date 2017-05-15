@@ -26,4 +26,23 @@ describe OysterCard do
     expect { oystercard1.deduct(8) }.to raise_error "You don't have enough money to travel."
   end
 
+  it "checks if it is touched in" do
+    expect(oystercard.touch_in).to eq true
+  end
+
+  it "checks if it is touched out" do
+    expect(oystercard.touch_out).to eq true
+  end
+
+  it "checks if it is in journey" do
+    oystercard.touch_in
+    expect(oystercard.in_journey?).to eq true
+  end
+
+  it "checks if it is not in journey" do
+    oystercard.touch_in
+    oystercard.touch_out
+    expect(oystercard.in_journey?).to eq false
+  end
+
 end
