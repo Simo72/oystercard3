@@ -30,8 +30,17 @@ describe OysterCard do
     expect(oystercard.touch_in).to eq true
   end
 
+  it "raise error when balance is less than minimum amount on touch in" do
+    oystercard1 = OysterCard.new(0)
+    expect { oystercard1.touch_in }.to raise_error "You have less than minimum £#{OysterCard::BALANCE_MIN} balance"
+  end
+
+  it "checks balance is minimum amount on touch in" do
+    expect(oystercard.touch_in).to eq true
+  end
+
   it "checks if it is touched out" do
-    expect(oystercard.touch_out).to eq true
+    expect(oystercard.touch_out).to eq false
   end
 
   it "checks if it is in journey" do
