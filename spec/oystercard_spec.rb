@@ -12,4 +12,8 @@ describe OysterCard do
     expect(oystercard.top_up(5)).to eq 5 + OysterCard::BALANCE_DEFAULT
   end
 
+  it "limits the top up to a maximum value" do
+    expect { oystercard.top_up(OysterCard::BALANCE_MAX) }.to raise_error "You've exceeded the maximum top up of #{OysterCard::BALANCE_MAX}"
+  end
+
 end
