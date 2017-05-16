@@ -2,8 +2,8 @@ require 'oystercard'
 
 describe OysterCard do
    subject(:oystercard) { described_class.new }
-   it { expect(oystercard).to respond_to :top_up }
    let(:fake_entry_station) { double :entry_station }
+   
 
   it "has a balance" do
     expect(oystercard.balance).to eq OysterCard::BALANCE_DEFAULT
@@ -43,13 +43,13 @@ describe OysterCard do
 
   it "checks if it is in journey" do
     oystercard.touch_in
-    expect(oystercard.in_journey?).to eq :at_station
+    expect(oystercard.in_journey?).to eq true
   end
 
   it "checks if it is not in journey" do
     oystercard.touch_in
     oystercard.touch_out
-    expect(oystercard.in_journey?).to eq nil
+    expect(oystercard.in_journey?).to eq false
   end
 
   it "remembers the entry station of the current journey" do
