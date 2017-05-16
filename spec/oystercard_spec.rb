@@ -40,7 +40,8 @@ describe OysterCard do
   end
 
   it "deducts fare at touch out" do
-    expect { oystercardpry.touch_out }.to change{OysterCard::BALANCE_DEFAULT}.by(OysterCard::BALANCE_MIN)
+
+    expect { oystercard.touch_out }.to change{oystercard.balance}.by(-OysterCard::BALANCE_MIN)
   end
 
   it "checks if it is in journey" do
