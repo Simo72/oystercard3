@@ -60,6 +60,15 @@ describe OysterCard do
     it 'responds to #list_journeys' do
       expect(subject).to respond_to(:list_journeys)
     end
-  end
 
+    it 'test that the card has an empty list of journies by default' do
+      expect(oystercard.list_journeys).to eq []
+    end
+
+    it 'checks that touching in and out creates one journey list' do
+      oystercard.touch_in("Liverpool Street")
+      oystercard.touch_out("Clapham Junction")
+      expect(oystercard.list_journeys).to eq [{journey_start: "Liverpool Street", journey_end: "Clapham Junction"}]
+    end
+  end
 end

@@ -39,6 +39,4 @@ class OysterCard
     @list_journeys
   end
 
-
-
 end
