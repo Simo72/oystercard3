@@ -3,7 +3,7 @@ require 'oystercard'
 describe OysterCard do
    subject(:oystercard) { described_class.new }
    let(:fake_entry_station) { double :entry_station }
-   
+
 
   it "has a balance" do
     expect(oystercard.balance).to eq OysterCard::BALANCE_DEFAULT
@@ -34,26 +34,32 @@ describe OysterCard do
 
   it "raise error when balance is less than minimum amount on touch in" do
     oystercard1 = OysterCard.new(0)
-    expect { oystercard1.touch_in }.to raise_error "You have less than minimum £#{OysterCard::BALANCE_MIN} balance"
+    expect { oystercard1.touch_in("station") }.to raise_error "You have less than minimum £#{OysterCard::BALANCE_MIN} balance"
   end
 
   it "deducts fare at touch out" do
-    expect { oystercard.touch_out }.to change{oystercard.balance}.by(-OysterCard::BALANCE_MIN)
+    expect { oystercard.touch_out("station") }.to change{oystercard.balance}.by(-OysterCard::BALANCE_MIN)
   end
 
   it "checks if it is in journey" do
-    oystercard.touch_in
+    oystercard.touch_in("station")
     expect(oystercard.in_journey?).to eq true
   end
 
   it "checks if it is not in journey" do
-    oystercard.touch_in
-    oystercard.touch_out
+    oystercard.touch_in("station")
+    oystercard.touch_out("station")
     expect(oystercard.in_journey?).to eq false
   end
 
   it "remembers the entry station of the current journey" do
-    expect(oystercard.touch_in).to eq :at_station
+    expect(oystercard.touch_in("station")).to eq "station"
+  end
+
+  describe '#list_journeys' do
+    it 'responds to #list_journeys' do
+      expect(subject).to respond_to(:list_journeys)
+    end
   end
 
 end
