@@ -41,4 +41,8 @@ class OysterCard
     @list_journeys
   end
 
+def fare
+  BALANCE_MIN
+end
+
 end

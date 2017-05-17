@@ -71,4 +71,10 @@ describe OysterCard do
       expect(oystercard.list_journeys).to eq [{journey_start: "Liverpool Street", journey_end: "Clapham Junction"}]
     end
   end
+
+  describe "#fare" do
+    it "should return above minimum fare" do
+      expect(oystercard.fare).to eq OysterCard::BALANCE_MIN
+    end
+  end
 end
