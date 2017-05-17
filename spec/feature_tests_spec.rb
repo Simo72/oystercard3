@@ -6,6 +6,7 @@ let(:card) { OysterCard.new }
 let(:station) { Station.new('Aldgate') }
 
 
+
   it 'tests to see if there is money on the card' do
     expect(card.balance).to eq 5
   end
