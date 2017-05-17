@@ -5,7 +5,7 @@ describe OysterCard do
    let(:fake_entry_station) { double :entry_station }
 
 
-  it "has a balance" do 
+  it "has a balance" do
     expect(oystercard.balance).to eq OysterCard::BALANCE_DEFAULT
   end
 
@@ -41,16 +41,16 @@ describe OysterCard do
     expect { oystercard.touch_out("station") }.to change{oystercard.balance}.by(-OysterCard::BALANCE_MIN)
   end
 
-  it "checks if it is in journey" do
-    oystercard.touch_in("station")
-    expect(oystercard.in_journey?).to eq true
-  end
+  # it "checks if it is in journey" do
+  #   oystercard.touch_in("station")
+  #   expect(oystercard.in_journey?).to eq true
+  # end
 
-  it "checks if it is not in journey" do
-    oystercard.touch_in("station")
-    oystercard.touch_out("station")
-    expect(oystercard.in_journey?).to eq false
-  end
+  # it "checks if it is not in journey" do
+  #   oystercard.touch_in("station")
+  #   oystercard.touch_out("station")
+  #   expect(oystercard.in_journey?).to eq false
+  # end
 
   it "remembers the entry station of the current journey" do
     expect(oystercard.touch_in("station")).to eq "station"

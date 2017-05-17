@@ -1,3 +1,5 @@
+require 'journey'
+
 class OysterCard
   attr_reader :balance, :entry_station
   BALANCE_DEFAULT = 5
@@ -31,9 +33,9 @@ class OysterCard
     @entry_station = nil
   end
 
-  def in_journey?
-    @entry_station != nil
-  end
+  # def in_journey?
+  #   @entry_station != nil
+  # end
 
   def list_journeys
     @list_journeys
