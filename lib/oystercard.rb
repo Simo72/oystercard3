@@ -1,4 +1,4 @@
-require 'journey'
+require_relative 'journey'
 
 class OysterCard
   attr_reader :balance, :entry_station
@@ -40,9 +40,5 @@ class OysterCard
   def list_journeys
     @list_journeys
   end
-
-def fare
-  BALANCE_MIN
-end
 
 end
