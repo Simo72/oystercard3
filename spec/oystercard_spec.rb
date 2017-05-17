@@ -5,7 +5,7 @@ describe OysterCard do
    let(:fake_entry_station) { double :entry_station }
 
 
-  it "has a balance" do
+  it "has a balance" do 
     expect(oystercard.balance).to eq OysterCard::BALANCE_DEFAULT
   end
 
