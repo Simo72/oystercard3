@@ -10,6 +10,7 @@ it {is_expected.to respond_to :entry_station}
 it {is_expected.to respond_to :exit_station}
 
 
+
 it "Journey starts form entry station" do
   expect(subject.entry_station).to eq entry_station
 end
