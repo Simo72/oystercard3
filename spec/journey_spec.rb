@@ -1,29 +1,39 @@
 require 'journey'
 
 describe Journey do
-let(:entry_station) {double :station}
-let(:exit_station) {double :station}
-subject(:journey) { described_class.new(entry_station) }
-#let(:fake_oystercard) { double :oystercard, in_journey?: true }
+ let(:entry_station) {double :station}
+ let(:exit_station) {double :station}
+ subject(:journey) { described_class.new(entry_station) }
+ #let(:fake_oystercard) { double :oystercard, in_journey?: true }
 
-it {is_expected.to respond_to :entry_station}
-it {is_expected.to respond_to :exit_station}
+ it {is_expected.to respond_to :entry_station}
+ it {is_expected.to respond_to :exit_station}
 
 
 
-it "Journey starts form entry station" do
+ it "Journey starts form entry station" do
   expect(subject.entry_station).to eq entry_station
-end
+ end
 
-it "Journey end at exit station" do
+ it "Journey end at exit station" do
   journey.complete_journey(exit_station)
   expect(subject.exit_station).to eq exit_station
-end
+ end
 
-it " returns the minimum fare of £1 if both entry and exit station" do
+ it " returns the minimum fare of £1 if both entry and exit station" do
   journey.complete_journey(exit_station)
   expect(subject.fare).to eq Journey::MINIMUM_FARE
-end
+ end
+
+ it "returns penalty fare if there is no touch in" do
+   journey = Journey.new(nil)
+   journey.complete_journey(exit_station)
+   expect(journey.fare).to eq Journey::PENALTY_FARE
+  end
+
+  it "returns penalty fare if there is no touch out" do
+    expect(journey.fare).to eq Journey::PENALTY_FARE
+  end
 
 #   describe '#in_journey' do
 # it "checks if it is in journey" do
