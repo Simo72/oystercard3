@@ -53,7 +53,7 @@ describe OysterCard do
   # end
 
   it "remembers the entry station of the current journey" do
-    expect(oystercard.touch_in("station")).to eq "station"
+    expect(oystercard.touch_in(fake_entry_station)).to eq fake_entry_station
   end
 
   describe '#list_journeys' do
@@ -65,10 +65,5 @@ describe OysterCard do
       expect(oystercard.list_journeys).to eq []
     end
 
-    it 'checks that touching in and out creates one journey list' do
-      oystercard.touch_in("Liverpool Street")
-      oystercard.touch_out("Clapham Junction")
-      expect(oystercard.list_journeys).to eq [{journey_start: "Liverpool Street", journey_end: "Clapham Junction"}]
-    end
   end
 end

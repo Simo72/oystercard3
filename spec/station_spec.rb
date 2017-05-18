@@ -1,5 +1,7 @@
+require 'station'
+
 describe Station do
-  subject(:station) { Station.new('Aldgate') }
+  subject(:station) { described_class.new('Aldgate') }
 
   it 'can check its zone' do
     expect(station.check_zone).to eq Station::DEFAULT_ZONE

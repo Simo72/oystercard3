@@ -8,7 +8,6 @@ class OysterCard
 
   def initialize(balance = BALANCE_DEFAULT)
     @balance = balance
-    @entry_station = nil
     @list_journeys = []
   end
 
@@ -24,13 +23,12 @@ class OysterCard
 
   def touch_in(station)
     raise "You have less than minimum £#{BALANCE_MIN} balance" if @balance < BALANCE_MIN
-    @entry_station = station
+    station
   end
 
   def touch_out(station)
     @balance -= BALANCE_MIN
     @list_journeys << {journey_start: @entry_station, journey_end: station}
-    @entry_station = nil
   end
 
   # def in_journey?
