@@ -1,22 +1,18 @@
 class Journey
+MINIMUM_FARE = 1
+  attr_reader :entry_station, :exit_station
 
-def initialize(complete = false, min_fare = 1)
-  @complete = complete
-  @min_fare = min_fare
-  @entry_station = nil
-  @exit_station = nil
-end
+  def initialize(entry_station)
+    @entry_station = entry_station
 
-  def in_journey?
-    @entry_station != nil
+  end
+
+  def complete_journey(exit_station)
+    @exit_station = exit_station
   end
 
   def fare
-    @min_fare
+    MINIMUM_FARE
   end
-
-  # def list_journeys
-  #   @list_journeys
-  # end
 
 end
